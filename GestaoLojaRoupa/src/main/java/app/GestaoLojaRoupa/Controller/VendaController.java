@@ -1,8 +1,8 @@
 package app.GestaoLojaRoupa.Controller;
 
-import app.GestaoLojaRoupa.Entity.Funcionario;
 import app.GestaoLojaRoupa.Entity.Produto;
-import app.GestaoLojaRoupa.Service.ProdutoService;
+import app.GestaoLojaRoupa.Entity.Venda;
+import app.GestaoLojaRoupa.Service.VendaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/produto")
-public class ProdutoController {
+@RequestMapping("/api/venda")
+public class VendaController {
 
     @Autowired
-    private ProdutoService produtoService;
+    private VendaService vendaService;
 
     @PostMapping("/save")
-    public ResponseEntity<String> save(@RequestBody Produto produto) {
+    public ResponseEntity<String> save(@RequestBody Venda venda) {
         try {
-            String mensagem = this.produtoService.save(produto);
+            String mensagem = this.vendaService.save(venda);
             return new ResponseEntity<>(mensagem, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -28,9 +28,9 @@ public class ProdutoController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> update(@RequestBody Produto produto, @PathVariable long id) {
+    public ResponseEntity<String> update(@RequestBody Venda venda, @PathVariable long id) {
         try {
-            String mensagem = this.produtoService.update(produto, id);
+            String mensagem = this.vendaService.update(venda, id);
             return new ResponseEntity<>(mensagem, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -40,7 +40,7 @@ public class ProdutoController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable long id) {
         try {
-            String mensagem = this.produtoService.delete(id);
+            String mensagem = this.vendaService.delete(id);
             return new ResponseEntity<>(mensagem, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -48,9 +48,9 @@ public class ProdutoController {
     }
 
     @GetMapping("/findAll")
-    public ResponseEntity<List<Produto>> findAll() {
+    public ResponseEntity<List<Venda>> findAll() {
         try {
-            List<Produto> lista = this.produtoService.findAll();
+            List<Venda> lista = this.vendaService.findAll();
             return new ResponseEntity<>(lista, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -58,23 +58,22 @@ public class ProdutoController {
     }
 
     @GetMapping("/findById/{id}")
-    public ResponseEntity<Produto> findById(@PathVariable long id) {
+    public ResponseEntity<Venda> findById(@PathVariable long id) {
         try {
-            Produto produto = this.produtoService.findById(id);
-            return new ResponseEntity<>(produto, HttpStatus.OK);
+            Venda venda = this.vendaService.findById(id);
+            return new ResponseEntity<>(venda, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/findByNome")
-    public ResponseEntity<List<Produto>> findByNome(@RequestParam String nome) {
+    public ResponseEntity<List<Venda>> findByNome(@RequestParam String nome) {
         try {
-            List<Produto> lista = this.produtoService.findByNome(nome);
+            List<Venda> lista = this.vendaService.findByNome(nome);
             return new ResponseEntity<>(lista, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
-
 }

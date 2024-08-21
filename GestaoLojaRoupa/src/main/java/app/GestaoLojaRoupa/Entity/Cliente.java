@@ -26,7 +26,6 @@ public class Cliente {
     @NotEmpty(message = "Nome é obrigatório")
     private String nome;
 
-
     @NotEmpty(message = "CPF é obrigatório")
     @Pattern(regexp = "\\d{11}", message = "CPF deve ter 11 caracteres")
     private String cpf;

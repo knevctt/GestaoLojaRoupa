@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface FuncionarioRepository extends JpaRepository<Funcionario,Long> {
     public List<Funcionario> findByNome(String nome);
+
 }

@@ -67,13 +67,4 @@ public class VendaController {
         }
     }
 
-    @GetMapping("/findByNome")
-    public ResponseEntity<List<Venda>> findByNome(@RequestParam String nome) {
-        try {
-            List<Venda> lista = this.vendaService.findByNome(nome);
-            return new ResponseEntity<>(lista, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
-    }
 }

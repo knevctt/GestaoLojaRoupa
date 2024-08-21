@@ -39,8 +39,4 @@ public class VendaService {
         return venda;
     }
 
-    public List<Venda> findByNome(String nome){
-        return this.vendaRepository.findByNome(nome);
-    }
-
 }

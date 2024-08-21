@@ -16,7 +16,7 @@ public class ClienteService {
 
     public String save(Cliente cliente){
         this.clienteRepository.save(cliente);
-        return "Cliente salvo com sucesso";
+        return "Cliente salvo com sucesso!";
     }
 
     public  String update(Cliente cliente, long id){

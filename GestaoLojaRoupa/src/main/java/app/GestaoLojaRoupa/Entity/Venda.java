@@ -1,5 +1,6 @@
 package app.GestaoLojaRoupa.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -27,13 +28,20 @@ public class Venda {
     @NotNull
     private Double valorTotal;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
+    @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
 
     @ManyToMany
-    @JoinTable(name = "venda_produtos")
+    @JoinTable(
+            name = "venda_produtos",
+            joinColumns = @JoinColumn(name = "venda_id"),
+            inverseJoinColumns = @JoinColumn(name = "produto_id")
+    )
+    @JsonIgnoreProperties("vendas")
     private List<Produto> produtos;
 }

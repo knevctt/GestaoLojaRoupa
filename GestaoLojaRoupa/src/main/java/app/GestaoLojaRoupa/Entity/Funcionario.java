@@ -1,5 +1,6 @@
 package app.GestaoLojaRoupa.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -30,5 +31,7 @@ public class Funcionario {
     @NotBlank
     private String matricula;
 
-
+    @OneToMany(mappedBy = "funcionario")
+    @JsonIgnore
+    private List<Venda> vendas;
 }

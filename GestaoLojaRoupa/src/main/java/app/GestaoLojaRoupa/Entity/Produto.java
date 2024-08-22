@@ -28,8 +28,4 @@ public class Produto {
 
     @NotNull
     private Double valor;
-
-    @ManyToMany(mappedBy = "produtos")
-    @JsonIgnoreProperties("produtos")
-    private List<Venda> vendas;
 }

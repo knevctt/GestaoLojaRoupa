@@ -37,11 +37,6 @@ public class Venda {
     private Funcionario funcionario;
 
     @ManyToMany
-    @JoinTable(
-            name = "venda_produtos",
-            joinColumns = @JoinColumn(name = "venda_id"),
-            inverseJoinColumns = @JoinColumn(name = "produto_id")
-    )
-    @JsonIgnoreProperties("vendas")
+    @JoinTable(name = "venda_produtos")
     private List<Produto> produtos;
 }

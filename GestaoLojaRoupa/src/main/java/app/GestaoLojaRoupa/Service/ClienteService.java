@@ -1,7 +1,6 @@
 package app.GestaoLojaRoupa.Service;
 
 import app.GestaoLojaRoupa.Entity.Cliente;
-import app.GestaoLojaRoupa.Entity.Funcionario;
 import app.GestaoLojaRoupa.Repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

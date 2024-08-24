@@ -1,6 +1,8 @@
 package app.GestaoLojaRoupa.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -36,7 +38,8 @@ public class Venda {
     @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
 
+    @JsonManagedReference
     @ManyToMany
-    @JoinTable(name = "venda_produtos")
-    private List<Produto> produtos;
+    @JoinTable(name = "venda_produto")
+    private List<Produto> produto;
 }

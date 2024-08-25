@@ -38,7 +38,6 @@ public class Venda {
     @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
 
-    @JsonManagedReference
     @ManyToMany
     @JoinTable(name = "venda_produto")
     private List<Produto> produto;

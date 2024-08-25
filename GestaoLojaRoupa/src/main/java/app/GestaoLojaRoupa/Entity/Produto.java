@@ -31,8 +31,4 @@ public class Produto {
     @NotNull
     private Double valor;
 
-    @JsonBackReference
-    @ManyToMany(mappedBy = "produto")
-    private List<Venda> venda;
-
 }

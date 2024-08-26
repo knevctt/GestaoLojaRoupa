@@ -10,13 +10,14 @@ import java.util.List;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 
-    List<Cliente> findByNome(String nome);
+    Cliente findByNome(String nome);
 
     List<Cliente> findByCpf (String cpf);
 
-    List<Cliente> findByIdadeGreaterThan(Integer idade);
-
-    @Query("SELECT c FROM Cliente c WHERE c.nome LIKE :prefixo%")
-    List<Cliente> findByPrefixo(@Param("prefixo") String prefixo);
+    @Query("SELECT c FROM Cliente c " +
+            "JOIN c.vendas v " +
+            "GROUP BY c.id " +
+            "ORDER BY SUM(v.valorTotal) DESC")
+    List<Cliente> findTop3ClientesPorGastoTotal();
 
 }

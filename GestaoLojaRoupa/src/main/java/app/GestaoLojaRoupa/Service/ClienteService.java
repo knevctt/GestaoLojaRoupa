@@ -39,8 +39,15 @@ public class ClienteService {
         return cliente;
     }
 
-    public List<Cliente> findByNome(String nome){
-        return this.clienteRepository.findByNome(nome);
+    public Cliente findByNome(String nome) {
+        return clienteRepository.findByNome(nome);
     }
 
+    public List<Cliente> findByCpf(String cpf) {
+        return clienteRepository.findByCpf(cpf);
+    }
+
+    public List<Cliente> findTop3ClientesPorGastoTotal() {
+        return clienteRepository.findTop3ClientesPorGastoTotal();
+    }
 }

@@ -59,18 +59,38 @@ public class ClienteController {
     @GetMapping("/findById/{id}")
     public ResponseEntity<Cliente> findById(@PathVariable long id) {
         try {
-            Cliente funcionario = this.clienteService.findById(id);
-            return new ResponseEntity<>(funcionario, HttpStatus.OK);
+            Cliente cliente = this.clienteService.findById(id);
+            return new ResponseEntity<>(cliente, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
-    @GetMapping("/findByNome")
-    public ResponseEntity<List<Cliente>> findByNome(@RequestParam String nome) {
+    @GetMapping("/findByNome/{nome}")
+    public ResponseEntity<Cliente> findByNome(@PathVariable String nome) {
         try {
-            List<Cliente> lista = this.clienteService.findByNome(nome);
+            Cliente cliente = clienteService.findByNome(nome);
+            return new ResponseEntity<>(cliente, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/findByCpf/{cpf}")
+    public ResponseEntity<List<Cliente>> findByCpf(@PathVariable String cpf) {
+        try {
+            List<Cliente> lista = this.clienteService.findByCpf(cpf);
             return new ResponseEntity<>(lista, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/top3")
+    public ResponseEntity<List<Cliente>> getTop3ClientesPorGastoTotal() {
+        try {
+            List<Cliente> clientes = clienteService.findTop3ClientesPorGastoTotal();
+            return new ResponseEntity<>(clientes, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }

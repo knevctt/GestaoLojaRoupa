@@ -1,6 +1,7 @@
 package app.GestaoLojaRoupa.Controller;
 
 import app.GestaoLojaRoupa.Entity.Funcionario;
+import app.GestaoLojaRoupa.Entity.Venda;
 import app.GestaoLojaRoupa.Service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -71,6 +72,26 @@ public class FuncionarioController {
         try {
             List<Funcionario> lista = this.funcionarioService.findByNome(nome);
             return new ResponseEntity<>(lista, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/findByMatricula/{matricula}")
+    public ResponseEntity<Funcionario> findByMatricula(@PathVariable String matricula){
+        try {
+            Funcionario funcionario = funcionarioService.findByMatricula(matricula);
+            return new ResponseEntity<>(funcionario, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/findVendasByMatriculaFuncionario/{matricula}")
+    public ResponseEntity<List<Venda>> findVendasByMatriculaFuncionario(@PathVariable String matricula) {
+        try {
+            List<Venda> vendas = funcionarioService.findVendasByMatriculaFuncionario(matricula);
+            return new ResponseEntity<>(vendas, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }

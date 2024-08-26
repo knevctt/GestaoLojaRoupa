@@ -1,6 +1,7 @@
 package app.GestaoLojaRoupa.Service;
 
 import app.GestaoLojaRoupa.Entity.Funcionario;
+import app.GestaoLojaRoupa.Entity.Venda;
 import app.GestaoLojaRoupa.Repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,4 +43,11 @@ public class FuncionarioService {
         return this.funcionarioRepository.findByNome(nome);
     }
 
+    public Funcionario findByMatricula(String matricula){
+        return funcionarioRepository.findByMatricula(matricula);
+    }
+
+    public List<Venda> findVendasByMatriculaFuncionario(String matricula){
+        return funcionarioRepository.findVendasByMatriculaFuncionario(matricula);
+    }
 }
